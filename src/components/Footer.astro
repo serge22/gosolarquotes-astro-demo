@@ -1,0 +1,348 @@
+---
+// Footer.astro
+// Icons are inlined directly below — no separate icon component/file needed.
+
+const primaryNav = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+const guideLinks = [
+  { label: "Solar panel cost", href: "/guides/solar-panel-cost" },
+  { label: "Solar rebate", href: "/guides/solar-rebate" },
+  { label: "Solar system size", href: "/guides/solar-system-size" },
+  { label: "Solar battery cost", href: "/guides/solar-battery-cost" },
+  { label: "Feed-in tariffs", href: "/guides/feed-in-tariffs" },
+  { label: "Is solar worth it", href: "/guides/is-solar-worth-it" },
+  { label: "Get solar quotes", href: "/get-quotes" },
+];
+
+const legalLinks = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Site Map", href: "/sitemap" },
+];
+
+// Inline icon paths — swap/add entries here rather than pulling in an icon package.
+const socialLinks = [
+  {
+	label: "Pinterest",
+	href: "https://www.pinterest.com/gosolarquotes/",
+	path: "M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.03-.655 2.568-.994 3.995-.283 1.195.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.222-.174.269-.402.163-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146A12 12 0 1 0 12 0z",
+  },
+  {
+	label: "Twitter",
+	href: "https://twitter.com/gosolarquotes",
+	path: "M23.953 4.57a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.161a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.06a4.923 4.923 0 0 0 3.946 4.827 4.996 4.996 0 0 1-2.212.085 4.936 4.936 0 0 0 4.604 3.417 9.867 9.867 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.053 0 14-7.496 14-13.986 0-.21 0-.42-.015-.63A9.935 9.935 0 0 0 24 4.59z",
+  },
+  {
+	label: "YouTube",
+	href: "https://www.youtube.com/@gosolarquotes",
+	path: "M23.498 6.186a2.999 2.999 0 0 0-2.112-2.122C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.386.564A2.999 2.999 0 0 0 .502 6.186 31.26 31.26 0 0 0 0 12a31.26 31.26 0 0 0 .502 5.814 2.999 2.999 0 0 0 2.112 2.122C4.495 20.5 12 20.5 12 20.5s7.505 0 9.386-.564a2.999 2.999 0 0 0 2.112-2.122A31.26 31.26 0 0 0 24 12a31.26 31.26 0 0 0-.502-5.814zM9.75 15.021V8.979L15.818 12l-6.068 3.021z",
+  },
+  {
+	label: "Facebook",
+	href: "https://facebook.com/gosolarquotes",
+	path: "M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.022 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.878h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.918 8.437-9.94z",
+  },
+  {
+	label: "LinkedIn",
+	href: "https://www.linkedin.com/company/gosolarquotes/",
+	path: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.048c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.558V9h3.556v11.452z",
+  },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+
+	<!-- Top primary nav -->
+	<nav aria-label="Footer primary" class="footer-primary-nav">
+	  <ul class="footer-primary-list">
+		{primaryNav.map((link, i) => (
+		  <>
+			<li>
+			  <a
+				href={link.href}
+				class:list={[
+				  "footer-primary-link",
+				  link.label === "Home" ? "is-home" : "",
+				]}
+			  >
+				{link.label}
+			  </a>
+			</li>
+			{i < primaryNav.length - 1 && (
+			  <li class="footer-primary-sep" aria-hidden="true">|</li>
+			)}
+		  </>
+		))}
+	  </ul>
+	</nav>
+
+	<!-- Middle: guides / CTA / contact -->
+	<div class="footer-columns">
+	  <!-- Solar guides -->
+	  <nav aria-label="Solar guides">
+		<h2 class="footer-heading">Solar guides</h2>
+		<ul class="footer-guide-list">
+		  {guideLinks.map((link) => (
+			<li>
+			  <a href={link.href} class="footer-guide-link">
+				{link.label}
+			  </a>
+			</li>
+		  ))}
+		</ul>
+	  </nav>
+
+	  <!-- CTA -->
+	  <div class="footer-cta">
+		<p class="footer-cta-text">
+		  <span class="footer-cta-highlight">Solar companies:</span>
+		  {" "}Join our network and start receiving quality leads today!
+		</p>
+		<a href="/join-as-pro" class="footer-cta-button">
+		  Join as Pro
+		</a>
+	  </div>
+
+	  <!-- Contact -->
+	  <div class="footer-contact">
+		<p class="footer-contact-brand">
+		  Go<span class="footer-contact-brand-bold">Solar</span>Quotes
+		</p>
+		<p class="footer-contact-line">
+		  <a href="tel:1800861852" class="footer-contact-link">1800 86 18 52</a>
+		</p>
+		<p class="footer-contact-line">
+		  <a href="mailto:ben@gosolarquotes.com.au" class="footer-contact-link">
+			ben@gosolarquotes.com.au
+		  </a>
+		</p>
+	  </div>
+	</div>
+
+	<!-- Social icons (inline SVGs, defined in socialLinks above) -->
+	<div class="footer-social">
+	  {socialLinks.map((social) => (
+		<a
+		  href={social.href}
+		  aria-label={social.label}
+		  class="footer-social-link"
+		>
+		  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="footer-social-icon">
+			<path d={social.path}></path>
+		  </svg>
+		</a>
+	  ))}
+	</div>
+
+	<!-- Bottom copyright bar -->
+	<div class="footer-copyright">
+	  <p>
+		Copyright &copy; {year} &ndash; GoSolarQuotes &ndash; ABN{" "}
+		<a href="/abn" class="footer-guide-link">41 624 380 166</a>
+		{" "}All Rights Reserved
+		{legalLinks.map((link) => (
+		  <>
+			{" "}&ndash;{" "}
+			<a href={link.href} class="footer-guide-link">
+			  {link.label}
+			</a>
+		  </>
+		))}
+	  </p>
+	</div>
+
+  </div>
+</footer>
+
+<style>
+	.site-footer {
+		background-color: #152c42;
+		color: #e2e8f0;
+	}
+
+	.footer-inner {
+		margin: 0 auto;
+		max-width: 72rem;
+		padding: 2.5rem 1.5rem;
+	}
+
+	.footer-primary-nav {
+		display: flex;
+		justify-content: center;
+		padding-bottom: 2rem;
+	}
+
+	.footer-primary-list {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		font-size: 0.875rem;
+	}
+
+	.footer-primary-link {
+		color: #fb923c;
+		transition: color 0.15s ease;
+	}
+
+	.footer-primary-link.is-home {
+		color: #ffffff;
+	}
+
+	.footer-primary-link:hover {
+		color: #fb923c;
+	}
+
+	.footer-primary-sep {
+		color: #64748b;
+	}
+
+	.footer-columns {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+
+	.footer-heading {
+		margin-bottom: 0.75rem;
+		font-weight: 600;
+		color: #cbd5e1;
+	}
+
+	.footer-guide-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		font-size: 0.875rem;
+	}
+
+	.footer-guide-link {
+		color: #fb923c;
+		transition: color 0.15s ease;
+	}
+
+	.footer-guide-link:hover {
+		color: #f97316;
+	}
+
+	.footer-cta {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.footer-cta-text {
+		font-size: 0.875rem;
+		color: #e2e8f0;
+	}
+
+	.footer-cta-highlight {
+		font-weight: 600;
+		color: #ffffff;
+	}
+
+	.footer-cta-button {
+		margin-top: 1rem;
+		display: inline-block;
+		border-radius: 0.25rem;
+		border: 1px solid #fb923c;
+		padding: 0.5rem 1.25rem;
+		font-size: 0.875rem;
+		color: #fb923c;
+		transition:
+			background-color 0.15s ease,
+			color 0.15s ease;
+	}
+
+	.footer-cta-button:hover {
+		background-color: #fb923c;
+		color: #293241;
+	}
+
+	.footer-contact {
+		text-align: center;
+	}
+
+	.footer-contact-brand {
+		color: #ffffff;
+	}
+
+	.footer-contact-brand-bold {
+		font-weight: 600;
+	}
+
+	.footer-contact-line {
+		margin-top: 0.75rem;
+		font-size: 0.875rem;
+	}
+
+	.footer-contact-line + .footer-contact-line {
+		margin-top: 0;
+	}
+
+	.footer-contact-link {
+		transition: color 0.15s ease;
+	}
+
+	.footer-contact-link:hover {
+		color: #fb923c;
+	}
+
+	.footer-social {
+		margin-top: 2.5rem;
+		display: flex;
+		justify-content: center;
+		gap: 1.25rem;
+	}
+
+	.footer-social-link {
+		display: flex;
+		height: 2rem;
+		width: 2rem;
+		align-items: center;
+		justify-content: center;
+		color: #ffffff;
+		transition: color 0.15s ease;
+	}
+
+	.footer-social-link:hover {
+		color: #fb923c;
+	}
+
+	.footer-social-icon {
+		height: 1rem;
+		width: 1rem;
+	}
+
+	.footer-copyright {
+		margin-top: 2rem;
+		border-top: 1px solid rgb(71 85 105 / 0.5);
+		padding-top: 1.5rem;
+		text-align: center;
+		font-size: 0.875rem;
+		color: #cbd5e1;
+	}
+
+	.site-footer ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	@media (min-width: 768px) {
+		.footer-columns {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.footer-contact {
+			text-align: left;
+		}
+	}
+</style>

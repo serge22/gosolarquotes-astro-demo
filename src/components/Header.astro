@@ -1,0 +1,623 @@
+---
+import { Image } from "astro:assets";
+
+import GosolarLogo from "../assets/logos/gosolarquoteslogotrans.png";
+
+interface NavChild {
+	label: string;
+	href?: string;
+	children?: { label: string; href: string }[];
+}
+
+interface NavItem {
+	label: string;
+	href?: string;
+	children?: NavChild[];
+}
+
+const navItems: NavItem[] = [
+	{
+		label: "Guides",
+		children: [
+			{
+				label: "Solar 101",
+				children: [
+					{
+						label: "Solar Basics",
+						href: "/guides/solar-101/how-it-works",
+					},
+					{
+						label: "Buying Solar",
+						href: "/guides/solar-101/panel-types",
+					},
+					{
+						label: "Owning Solar",
+						href: "/guides/solar-101/choosing-installer",
+					},
+				],
+			},
+			{
+				label: "Battery 101",
+				children: [
+					{
+						label: "Battery Basics",
+						href: "/guides/battery-101/how-it-works",
+					},
+					{
+						label: "Buying Batteries",
+						href: "/guides/battery-101/types",
+					},
+				],
+			},
+		],
+	},
+	{
+		label: "Systems",
+		children: [
+			{ label: "System Costs", href: "/solutions/startups" },
+			{ label: "Systems Sizes", href: "/solutions/enterprise" },
+		],
+	},
+	{
+		label: "Rebates",
+		children: [
+			{ label: "Solar System Rebates", href: "/resources/blog" },
+			{ label: "Battery Rebates", href: "/resources/docs" },
+			{ label: "Feed-in Tariffs", href: "/resources/guides" },
+		],
+	},
+	{
+		label: "Reviews",
+		children: [
+			{ label: "Panel & Installer Reviews", href: "/company/about" },
+		],
+	},
+	{
+		label: "About",
+		children: [
+			{ label: "Meet the Team", href: "/support/help-center" },
+			{ label: "Editorial Process", href: "/support/contact" },
+			{ label: "Review Guidelines", href: "/support/contact" },
+			{ label: "Contact Us", href: "/support/contact" },
+		],
+	},
+];
+---
+
+<header class="site-header">
+	<input type="checkbox" id="nav-toggle" class="nav-toggle" />
+
+	<nav class="nav-bar">
+		<a href="/" class="logo-link">
+			<Image
+				src={GosolarLogo}
+				alt="GoSolarQuotes"
+				loading="eager"
+				width={290}
+				height={74}
+				class="logo-img"
+			/>
+		</a>
+
+		<label for="nav-toggle" class="menu-toggle" aria-label="Toggle menu">
+			<svg
+				class="icon-md"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				stroke-width="2"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M4 6h16M4 12h16M4 18h16"></path>
+			</svg>
+		</label>
+
+		<ul class="nav-list">
+			{
+				navItems.map((item) =>
+					item.children ? (
+						<li class="nav-dropdown">
+							<button class="nav-dropdown-trigger">
+								{item.label}
+								<svg
+									class="chevron"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M19 9l-7 7-7-7"
+									/>
+								</svg>
+							</button>
+							<div class="nav-dropdown-panel">
+								{item.children.map((child) =>
+									child.children ? (
+										<div class="nav-flyout">
+											<button class="nav-flyout-trigger">
+												{child.label}
+												<svg
+													class="chevron-sm"
+													fill="none"
+													viewBox="0 0 24 24"
+													stroke="currentColor"
+													stroke-width="2"
+												>
+													<path
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														d="M9 5l7 7-7 7"
+													/>
+												</svg>
+											</button>
+											<div class="nav-flyout-panel">
+												{child.children.map(
+													(grandchild) => (
+														<a
+															href={
+																grandchild.href
+															}
+															class="nav-dropdown-link"
+														>
+															{grandchild.label}
+														</a>
+													),
+												)}
+											</div>
+										</div>
+									) : (
+										<a
+											href={child.href}
+											class="nav-dropdown-link"
+										>
+											{child.label}
+										</a>
+									),
+								)}
+							</div>
+						</li>
+					) : (
+						<li>
+							<a href={item.href} class="nav-link">
+								{item.label}
+							</a>
+						</li>
+					),
+				)
+			}
+		</ul>
+
+		<div class="nav-cta">
+			<a href="tel:1800861852" class="phone-button">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="icon-sm"
+					><path
+						d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+					></path></svg
+				>
+				1800 861 852
+			</a>
+		</div>
+	</nav>
+
+	<div class="mobile-menu">
+		<ul class="mobile-nav-list">
+			{
+				navItems.map((item) =>
+					item.children ? (
+						<li>
+							<details>
+								<summary class="mobile-summary">
+									{item.label}
+								</summary>
+								<ul class="mobile-sublist">
+									{item.children.map((child) =>
+										child.children ? (
+											<li>
+												<details>
+													<summary class="mobile-summary mobile-summary-sm">
+														{child.label}
+													</summary>
+													<ul class="mobile-sublist">
+														{child.children.map(
+															(grandchild) => (
+																<li>
+																	<a
+																		href={
+																			grandchild.href
+																		}
+																		class="mobile-link mobile-link-sm"
+																	>
+																		{
+																			grandchild.label
+																		}
+																	</a>
+																</li>
+															),
+														)}
+													</ul>
+												</details>
+											</li>
+										) : (
+											<li>
+												<a
+													href={child.href}
+													class="mobile-link mobile-link-sm"
+												>
+													{child.label}
+												</a>
+											</li>
+										),
+									)}
+								</ul>
+							</details>
+						</li>
+					) : (
+						<li>
+							<a href={item.href} class="mobile-link">
+								{item.label}
+							</a>
+						</li>
+					),
+				)
+			}
+		</ul>
+		<a href="tel:1800861852" class="mobile-phone-button">
+			1800 861 852
+		</a>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		background-color: #ffffff;
+		border-bottom: 1px solid #e5e7eb;
+	}
+
+	.nav-toggle {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+	}
+
+	.nav-bar {
+		margin: 0 auto;
+		max-width: 80rem;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		gap: 1rem;
+		padding: 1rem;
+	}
+
+	.logo-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.logo-img {
+		height: 2.75rem;
+		width: auto;
+	}
+
+	.menu-toggle {
+		grid-column-start: 2;
+		display: flex;
+		height: 2.25rem;
+		width: 2.25rem;
+		cursor: pointer;
+		align-items: center;
+		justify-content: center;
+		justify-self: end;
+		border-radius: 0.5rem;
+		color: #4b5563;
+	}
+
+	.menu-toggle:hover {
+		background-color: #f3f4f6;
+	}
+
+	.icon-md {
+		height: 1.5rem;
+		width: 1.5rem;
+	}
+
+	.icon-sm {
+		height: 1.25rem;
+		width: 1.25rem;
+	}
+
+	.nav-list {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+		font-weight: 500;
+		color: #374151;
+	}
+
+	.nav-link:hover,
+	.nav-dropdown-trigger:hover {
+		color: #4f46e5;
+	}
+
+	.nav-dropdown {
+		position: relative;
+	}
+
+	.nav-dropdown-trigger {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	.chevron {
+		height: 1rem;
+		width: 1rem;
+		transition: transform 0.15s ease;
+	}
+
+	.nav-dropdown:hover .chevron {
+		transform: rotate(180deg);
+	}
+
+	.chevron-sm {
+		height: 0.875rem;
+		width: 0.875rem;
+	}
+
+	.nav-dropdown-panel {
+		visibility: hidden;
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		z-index: 10;
+		margin-top: 0.5rem;
+		width: 13rem;
+		transform: translateX(-50%);
+		border-radius: 0.5rem;
+		border: 1px solid #e5e7eb;
+		background-color: #ffffff;
+		padding: 0.5rem 0;
+		opacity: 0;
+		box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+		transition: opacity 0.15s ease;
+	}
+
+	.nav-dropdown-panel::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: -0.5rem;
+		height: 0.5rem;
+	}
+
+	.nav-dropdown:hover .nav-dropdown-panel {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	.nav-dropdown-link {
+		display: block;
+		padding: 0.5rem 1rem;
+		font-size: 0.875rem;
+		color: #374151;
+	}
+
+	.nav-dropdown-link:hover {
+		background-color: #f9fafb;
+		color: #4f46e5;
+	}
+
+	.nav-flyout {
+		position: relative;
+	}
+
+	.nav-flyout-trigger {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		padding: 0.5rem 1rem;
+		text-align: left;
+		font-size: 0.875rem;
+		color: #374151;
+	}
+
+	.nav-flyout-trigger:hover {
+		background-color: #f9fafb;
+		color: #4f46e5;
+	}
+
+	.nav-flyout-panel {
+		visibility: hidden;
+		position: absolute;
+		left: 100%;
+		top: 0;
+		z-index: 20;
+		margin-left: 0.25rem;
+		width: 13rem;
+		border-radius: 0.5rem;
+		border: 1px solid #e5e7eb;
+		background-color: #ffffff;
+		padding: 0.5rem 0;
+		opacity: 0;
+		box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+		transition: opacity 0.15s ease;
+	}
+
+	.nav-flyout-panel::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: -0.25rem;
+		width: 0.25rem;
+	}
+
+	.nav-flyout:hover .nav-flyout-panel {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	.nav-cta {
+		display: none;
+	}
+
+	.phone-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		border-radius: 1rem;
+		background-color: #f88d00;
+		padding: 0.625rem 1.25rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: #111827;
+	}
+
+	.phone-button:hover {
+		background-color: #ea580c;
+	}
+
+	.phone-button:focus {
+		outline: none;
+		box-shadow: 0 0 0 4px #a5b4fc;
+	}
+
+	.mobile-menu {
+		display: none;
+		max-height: 0;
+		flex-direction: column;
+		overflow: hidden;
+		border-top: 1px solid #e5e7eb;
+		padding: 0 1rem;
+		transition: all 0.2s ease;
+	}
+
+	.nav-toggle:checked ~ .mobile-menu {
+		display: flex;
+		max-height: 32rem;
+		overflow-y: auto;
+		padding: 1rem;
+	}
+
+	.mobile-nav-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		font-weight: 500;
+		color: #374151;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.mobile-summary {
+		cursor: pointer;
+		user-select: none;
+		border-radius: 0.5rem;
+		padding: 0.5rem 0.75rem;
+	}
+
+	.mobile-summary:hover {
+		background-color: #f9fafb;
+		color: #4f46e5;
+	}
+
+	.mobile-summary-sm {
+		font-size: 0.875rem;
+	}
+
+	.mobile-sublist {
+		margin-left: 0.75rem;
+		margin-top: 0.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		border-left: 1px solid #e5e7eb;
+		padding-left: 0.75rem;
+
+		list-style: none;
+	}
+
+	.mobile-link {
+		display: block;
+		border-radius: 0.5rem;
+		padding: 0.5rem 0.75rem;
+	}
+
+	.mobile-link:hover {
+		background-color: #f9fafb;
+		color: #4f46e5;
+	}
+
+	.mobile-link-sm {
+		font-size: 0.875rem;
+	}
+
+	.mobile-phone-button {
+		margin-top: 0.75rem;
+		display: block;
+		border-radius: 0.5rem;
+		background-color: #4f46e5;
+		padding: 0.625rem 1.25rem;
+		text-align: center;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: #ffffff;
+	}
+
+	.mobile-phone-button:hover {
+		background-color: #4338ca;
+	}
+
+	.site-header .nav-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	@media (min-width: 1024px) {
+		.nav-bar {
+			grid-template-columns: auto 1fr auto;
+			padding: 1rem 2rem;
+		}
+
+		.menu-toggle {
+			display: none;
+		}
+
+		.nav-list {
+			display: flex;
+		}
+
+		.nav-cta {
+			display: flex;
+			justify-content: flex-end;
+		}
+
+		.mobile-menu {
+			display: none !important;
+		}
+	}
+</style>

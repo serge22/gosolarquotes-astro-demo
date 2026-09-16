@@ -1,0 +1,711 @@
+---
+
+---
+<section class="head">
+	<div class="wrap">
+		<h2>Solar System Size Calculator</h2>
+		<p>
+			Start here: Before getting quotes, you need to know what size solar system suits your home.
+			Use this calculator to find the right system size based on your electricity usage and get accurate quotes faster.
+		</p>
+	</div>
+</section>
+
+<!-- =====================================================
+	 SOLAR SIZE CALCULATOR v2 — GoSolarQuotes
+	 Paste into an Elementor HTML widget.
+	 ===================================================== -->
+<section class="section2" style="background-color: #F5F5F5;">
+<div id="gsq9">
+  <div id="gsq9-wrap">
+
+	<!-- LEFT -->
+	<div id="gsq9-left">
+	  <div id="gsq9-inputs">
+
+		<!-- 1. BILL -->
+		<!-- SECTION 1 -->
+		<div class="gsq9-section-heading"><span class="gsq9-section-num">1.</span> Usage</div>
+		<div class="gsq9-sub-label">Average quarterly electricity bill</div>
+		<div class="gsq9-slider-row">
+		  <input type="range" id="gsq9-bill-range" min="100" max="1200" step="5" value="400">
+		  <span class="gsq9-slider-val" id="gsq9-bill-val">$400</span>
+		</div>
+		<div class="gsq9-hint">From your power bill. Used to estimate your daily kWh usage.</div>
+
+		<div class="gsq9-divider"></div>
+
+		<!-- SECTION 2 -->
+		<div class="gsq9-section-heading"><span class="gsq9-section-num">2.</span> Sunshine by location</div>
+		<div class="gsq9-sub-label">Your postcode</div>
+		<div id="gsq9-postcode-wrap">
+		  <input type="text" id="gsq9-postcode" inputmode="numeric" placeholder="2162" maxlength="4">
+		  <div id="gsq9-zone-display"></div>
+		</div>
+		<div id="gsq9-postcode-error">Please enter a valid 4-digit Australian postcode.</div>
+		<div class="gsq9-hint" id="gsq9-sun-hint">Enter your postcode to find your peak sun hours.</div>
+
+		<div class="gsq9-divider"></div>
+
+		<!-- SECTION 3 -->
+		<div class="gsq9-section-heading"><span class="gsq9-section-num">3.</span> Roof space</div>
+		<div class="gsq9-sub-label">How big is your home?</div>
+		<select id="gsq9-roof">
+		  <option value="small">Small — 1 to 2 bedrooms</option>
+		  <option value="medium" selected>Medium — 3 to 4 bedrooms</option>
+		  <option value="large">Large — 4+ bedrooms or double storey</option>
+		</select>
+		<div class="gsq9-hint" id="gsq9-roof-hint">A medium home typically has 30–40m² of usable north-facing roof space, suiting up to a 10kW system.</div>
+
+		<div class="gsq9-divider"></div>
+
+		<button type="button" id="gsq9-btn">Calculate</button>
+
+	  </div><!-- end inputs -->
+
+	  <!-- CTA STATE -->
+	  <div id="gsq9-cta" style="display:none;">
+
+		<button type="button" id="gsq9-edit-btn">&#8592; Edit my inputs</button>
+
+		<!-- BLUE BOX: 385 x 234 -->
+		<div id="gsq9-cta-box">
+		  <div id="gsq9-cta-box-heading">What now?</div>
+		  <div id="gsq9-cta-box-body">The next step is to compare quotes from local accredited installers.</div>
+		  <a id="gsq9-cta-btn" href="https://gosolarquotes.com.au/solar-quotes/" target="_blank">Compare Quotes Now</a>
+		</div>
+
+		<!-- STAT TEXT -->
+		<div id="gsq9-stat-text">Most Australians who get 3 quotes save $1,200&#8211;$2,800 on their system. <strong>Our installers are pre-vetted, SAA-accredited and top-rated by previous customers.</strong></div>
+
+		<!-- FOUNDER BLOCK -->
+		<div id="gsq9-founder">
+		  <div id="gsq9-founder-left">
+			<div id="gsq9-founder-name">Ben McInerney, Founder</div>
+			<img id="gsq9-sig" src="https://gosolarquotes.com.au/wp-content/uploads/2026/05/Signature-Ben-1.png" alt="Ben McInerney signature" width="142" height="67">
+		  </div>
+		  <div id="gsq9-founder-right">
+			<img id="gsq9-headshot" src="https://gosolarquotes.com.au/wp-content/uploads/2023/02/head-shot-ben-about-page.png" alt="Ben McInerney" width="110" height="110">
+			<img id="gsq9-saa" src="https://gosolarquotes.com.au/wp-content/uploads/2026/05/SAA_Logo.png" alt="Solar Accreditation Australia" width="105" height="32">
+		  </div>
+		</div>
+
+	  </div><!-- end cta -->
+	</div><!-- end left -->
+
+	<!-- RIGHT -->
+	<div id="gsq9-right">
+
+	  <div id="gsq9-results-heading">YOUR RESULTS</div>
+
+	  <div id="gsq9-box">
+
+		<div id="gsq9-tabs">
+		  <button type="button" class="gsq9-tab gsq9-tab-on" data-tab="size">Size</button>
+		  <button type="button" class="gsq9-tab" data-tab="roof">Roof space</button>
+		  <button type="button" class="gsq9-tab" data-tab="output">Output</button>
+		</div>
+
+		<div id="gsq9-hero">
+		  <div class="gsq9-hero-cell">
+			<div class="gsq9-hero-label" id="gsq9-hl-a">RECOMMENDED SYSTEM SIZE</div>
+			<div class="gsq9-hero-num" id="gsq9-hn-a">—</div>
+		  </div>
+		  <div class="gsq9-hero-cell">
+			<div class="gsq9-hero-label" id="gsq9-hl-b">DAILY PRODUCTION</div>
+			<div class="gsq9-hero-num gsq9-muted" id="gsq9-hn-b">—</div>
+		  </div>
+		</div>
+
+		<div id="gsq9-prompt" style="display:table;width:100%;height:160px;">
+		  <div style="display:table-cell;vertical-align:middle;padding:0 20px;">
+			<span style="color:#f78e19;font-size:16px;margin-right:8px;">&#8592;</span><span id="gsq9-prompt-text" style="font-size:13px;color:#aaa;font-style:italic;">Fill in your details on the left to see your results</span>
+		  </div>
+		</div>
+
+		<div id="gsq9-stats">
+
+		  <!-- SIZE TAB -->
+		  <div id="gsq9-sz">
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Recommended system size</span><span class="gsq9-sv gsq9-green" id="gsq9-z-size">—</span></div>
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Minimum viable size</span><span class="gsq9-sv" id="gsq9-z-min">—</span></div>
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Maximum useful size</span><span class="gsq9-sv" id="gsq9-z-max">—</span></div>
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Inverter size needed</span><span class="gsq9-sv" id="gsq9-z-inv">—</span></div>
+		  </div>
+
+		  <!-- ROOF SPACE TAB -->
+		  <div id="gsq9-sr" style="display:none;">
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Number of panels (400W each)</span><span class="gsq9-sv gsq9-green" id="gsq9-r-panels">—</span></div>
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Roof space required</span><span class="gsq9-sv" id="gsq9-r-sqm">—</span></div>
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Typical roof orientation</span><span class="gsq9-sv" id="gsq9-r-orient">North-facing ideal</span></div>
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Min. unshaded area needed</span><span class="gsq9-sv" id="gsq9-r-shade">—</span></div>
+		  </div>
+
+		  <!-- OUTPUT TAB -->
+		  <div id="gsq9-so" style="display:none;">
+			<div class="gsq9-chart-label">Monthly solar production vs your usage</div>
+			<div style="position:relative;height:200px;margin:10px 0 16px;">
+			  <canvas id="gsq9-chart"></canvas>
+			</div>
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Est. daily production</span><span class="gsq9-sv gsq9-green" id="gsq9-o-daily">—</span></div>
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Est. annual production</span><span class="gsq9-sv" id="gsq9-o-annual">—</span></div>
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Solar self-sufficiency</span><span class="gsq9-sv gsq9-green" id="gsq9-o-self">—</span></div>
+			<div class="gsq9-stat-row"><span class="gsq9-sl">Annual CO₂ offset</span><span class="gsq9-sv" id="gsq9-o-co2">—</span></div>
+		  </div>
+
+		</div>
+	  </div><!-- end box -->
+
+	  <div id="gsq9-disclaimer">
+		<strong>Disclaimer</strong><br>
+		This solar system size calculator is not a quote, it's to give you an idea of the right system size for your home. You will need to get quotes from local installers to confirm the right system for your roof and usage.
+	  </div>
+
+	</div><!-- end right -->
+  </div><!-- end wrap -->
+</div><!-- end gsq9 -->
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+#gsq9 {
+	max-width: 1080px; margin: 0 auto;
+  font-size: 15px; color: #222; line-height: 1.5;
+  box-sizing: border-box;
+  border: none !important; outline: none !important;
+  box-shadow: none !important; background: transparent !important;
+}
+#gsq9 * { box-sizing: border-box; }
+
+/* LAYOUT */
+#gsq9-wrap { display: block; }
+#gsq9-left { margin-bottom: 30px; max-width: 500px; }
+#gsq9-right { background: transparent; }
+@media (min-width: 1024px) {
+  #gsq9-wrap { display: flex; align-items: flex-start; gap: 100px; }
+  #gsq9-left { width: 440px; flex-shrink: 0; margin-bottom: 0; }
+  #gsq9-right { flex: 1; max-width: 540px; }
+}
+
+
+/* SECTION HEADINGS */
+#gsq9 .gsq9-section-heading {
+  font-size: 19px; font-weight: 700; color: #222;
+  margin-bottom: 12px; display: block;
+}
+#gsq9 .gsq9-section-num {
+  color: #f78e19;
+}
+#gsq9 .gsq9-sub-label {
+  font-size: 15px; color: #444;
+  margin-bottom: 10px; display: block;
+}
+/* DIVIDERS */
+#gsq9 .gsq9-divider {
+  border: none; border-top: 1px solid #ddd;
+  margin: 1.6em 0; display: block; background: none; height: 0;
+}
+
+
+/* BILL SLIDER */
+#gsq9 .gsq9-slider-row {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 6px;
+}
+#gsq9-bill-range {
+  -webkit-appearance: none; appearance: none;
+  flex: 1; height: 6px; background: #ddd; border-radius: 3px;
+  border: none; outline: none; cursor: pointer;
+  padding: 0; margin: 0; box-shadow: none; min-width: 0; display: block;
+}
+#gsq9-bill-range::-webkit-slider-runnable-track {
+  height: 6px; background: #ddd; border-radius: 3px; border: none;
+}
+#gsq9-bill-range::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 22px; height: 22px; background: #f78e19; border-radius: 50%;
+  border: 2px solid #fff; box-shadow: 0 0 0 1px #ccc;
+  cursor: pointer; margin-top: -8px;
+}
+#gsq9-bill-range::-moz-range-track {
+  height: 6px; background: #ddd; border-radius: 3px; border: none;
+}
+#gsq9-bill-range::-moz-range-thumb {
+  width: 22px; height: 22px; background: #f78e19; border-radius: 50%;
+  border: 2px solid #fff; box-shadow: 0 0 0 1px #ccc; cursor: pointer;
+}
+#gsq9 .gsq9-slider-val {
+  font-size: 20px; font-weight: 700; color: #183868;
+  min-width: 80px; text-align: right; white-space: nowrap; flex-shrink: 0;
+}
+#gsq9 .gsq9-hint { font-size: 13px; color: #555; margin-top: 5px; }
+
+/* POSTCODE */
+#gsq9-postcode-wrap { display: flex; align-items: center; margin-bottom: 6px; }
+#gsq9-postcode {
+  width: 100%; font-size: 15px; font-family: 'Lato', sans-serif;
+  padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px;
+  outline: none; box-shadow: none; background: #fff; color: #222; display: block;
+}
+#gsq9-postcode::placeholder { color: #ccc; }
+#gsq9-postcode:focus { border-color: #183868; }
+#gsq9-postcode.gsq9-err { border-color: #cc0033; }
+#gsq9-zone-display {
+  font-size: 16px; font-weight: 700; color: #183868;
+  padding: 0 1em; border-left: 1px solid #e3e3e3;
+  margin-left: 12px; white-space: nowrap; flex-shrink: 0;
+}
+#gsq9-postcode-error { font-size: 13px; color: #cc0033; margin-top: 4px; display: none; }
+
+/* SELECTS */
+#gsq9-roof {
+  width: 100%; font-size: 15px; font-family: 'Lato', sans-serif;
+  padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px;
+  background: #fff; color: #222; cursor: pointer;
+  outline: none; appearance: auto; margin-bottom: 6px; display: block;
+}
+#gsq9-roof:focus { border-color: #183868; }
+
+/* CALCULATE BUTTON */
+#gsq9-btn {
+  font-family: 'Lato', sans-serif; color: #272728; background: #f78e19;
+  font-weight: 400; font-size: 22px; padding: 13px 20px;
+  border: none; border-radius: 0; cursor: pointer; width: 100%;
+  display: block; text-transform: none; letter-spacing: normal;
+  box-shadow: none; line-height: normal; outline: none;
+}
+#gsq9-btn:hover { background: #ff9d28; }
+
+/* CTA */
+#gsq9-edit-btn {
+  background: none; border: none; color: #183868; font-size: 14px;
+  font-family: 'Lato', sans-serif; cursor: pointer; padding: 0;
+  text-decoration: underline; box-shadow: none; outline: none;
+  display: block; margin-bottom: 50px; margin-left: -8px;
+}
+#gsq9-edit-btn:hover { color: #f78e19; }
+
+/* BLUE BOX */
+#gsq9-cta-box {
+  width: 385px; min-height: 234px; max-width: 100%;
+  background: #DAE9FD; border-radius: 0;
+  padding: 33px 33px 33px 42px;
+  display: flex; flex-direction: column;
+  margin: 0 auto 85px;
+}
+#gsq9-cta-box-heading {
+  font-size: 20px; font-weight: 700; color: #222;
+  margin: 0 0 12px;
+}
+#gsq9-cta-box-body {
+  font-size: 14px; color: #555; line-height: 1.6;
+  margin-bottom: 24px; flex: 1;
+}
+#gsq9-cta-btn {
+display: block; width: 300px; margin: 0 auto;
+  background: #f78e19; color: #272728;
+  font-family: 'Lato', sans-serif; font-size: 17px; font-weight: 600;
+  height: 45px; line-height: 45px;
+  padding: 0; text-decoration: none; text-align: center;
+  border-radius: 0; cursor: pointer; border: none;
+  white-space: nowrap;
+}
+#gsq9-cta-btn:hover { background: #ff9d28; color: #272728; text-decoration: none; }
+
+/* STAT TEXT — same width as box */
+#gsq9-stat-text {
+  width: 385px; max-width: 100%;
+  margin: 20px auto 28px;
+  font-size: 14px; color: #444; line-height: 1.65;
+}
+#gsq9-stat-text strong { color: #222; }
+
+/* FOUNDER BLOCK — same width as box, headshot left, SAA below headshot */
+#gsq9-founder {
+  width: 385px; max-width: 100%;
+  margin: 0 auto;
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+#gsq9-founder-left {
+  display: flex; flex-direction: column;
+  gap: 4px; flex: 1;
+}
+#gsq9-founder-name {
+  font-size: 14px; color: #444; font-weight: 400;
+  margin-bottom: 4px;
+}
+#gsq9-sig {
+  display: block; width: 142px; height: 67px;
+  object-fit: contain;
+}
+/* HEADSHOT + SAA stacked on right */
+#gsq9-founder-right {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px; flex-shrink: 0;
+}
+#gsq9-headshot {
+  width: 110px; height: 110px;
+  border-radius: 50%; object-fit: cover;
+  display: block;
+}
+#gsq9-saa {
+  display: block; width: 105px; height: 32px;
+  object-fit: contain;
+}
+
+/* RIGHT */
+#gsq9-results-heading { font-size: 13px; font-weight: 700; color: #183868; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; margin-bottom: 14px; }
+#gsq9-box { background: #fff; overflow: hidden; }
+#gsq9-tabs { display: flex; border-bottom: 1px solid #e0e0e0; }
+#gsq9 .gsq9-tab { flex: 1; font-family: 'Lato', sans-serif; font-size: 14px; font-weight: 600; padding: 13px 6px; border: none; background: transparent; color: #999; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; outline: none; box-shadow: none; text-transform: none; letter-spacing: normal; border-radius: 0; transition: color 0.15s; }
+#gsq9 .gsq9-tab:hover { color: #183868; }
+#gsq9 .gsq9-tab-on { color: #183868; border-bottom: 3px solid #f78e19; background: #fff; }
+#gsq9-hero { display: flex; border-bottom: 1px solid #e8e8e8; }
+#gsq9 .gsq9-hero-cell { flex: 1; padding: 22px 16px; text-align: center; border-right: 1px solid #e8e8e8; }
+#gsq9 .gsq9-hero-cell:last-child { border-right: none; }
+#gsq9 .gsq9-hero-label { font-size: 11px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.07em; }
+#gsq9 .gsq9-hero-num { font-size: 28px; font-weight: 700; color: #183868; }
+#gsq9 .gsq9-muted { color: #ccc; }
+#gsq9-stats { padding: 4px 20px 16px; }
+#gsq9 .gsq9-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+#gsq9 .gsq9-stat-row:last-child { border-bottom: none; }
+#gsq9 .gsq9-sl { color: #555; }
+#gsq9 .gsq9-sv { font-weight: 700; color: #222; }
+#gsq9 .gsq9-green { color: #2a7a3b; }
+#gsq9-disclaimer { font-size: 13px; color: #555; line-height: 1.6; padding: 16px 20px; margin-top: 10px; background: #f5f5f5; }
+#gsq9-disclaimer strong { color: #222; }
+</style>
+
+<script>
+// This component hydrates itself on the client — no framework needed.
+// Astro bundles this as a module scoped to this component, so nothing
+// here leaks onto `window`; all wiring below happens via addEventListener
+// instead of inline on*="" attributes.
+declare const Chart: any;
+
+const root = document.getElementById('gsq9')!;
+
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const ER = 0.32;
+const CO2_PER_KWH = 0.79;
+const QUOTES_URL = 'https://gosolarquotes.com.au/solar-quotes/';
+
+const ZONE_SUN: Record<number, number> = { 1: 6.0, 2: 5.2, 3: 4.8, 4: 4.2 };
+
+const ZONE_LABEL: Record<number, string> = {
+  1: 'Northern Territory / outback — 6.0 peak sun hours/day.',
+  2: 'QLD / SA coast — 5.2 peak sun hours/day.',
+  3: 'NSW / WA / most metro areas — 4.8 peak sun hours/day.',
+  4: 'VIC / TAS / ACT — 4.2 peak sun hours/day.',
+};
+
+const ROOF: Record<string, { cap: number; hint: string }> = {
+  small: { cap: 5, hint: 'A small home typically has 15–25m² of usable roof space, suiting up to a 5kW system.' },
+  medium: { cap: 10, hint: 'A medium home typically has 30–40m² of usable roof space, suiting up to a 10kW system.' },
+  large: { cap: 13, hint: 'A large home typically has 50m²+ of usable roof space, suiting systems up to 13kW.' },
+};
+
+const POSTCODE_ZONES: [number, number, number][] = [[0,799,3],[800,853,2],[854,854,3],[855,861,2],[862,862,3],[863,869,2],[870,879,1],[880,885,3],[886,1000,2],[1001,2355,3],[2356,2357,2],[2358,2384,3],[2385,2389,2],[2390,2395,3],[2396,2397,2],[2398,2399,3],[2400,2400,2],[2401,2404,3],[2405,2407,2],[2408,2544,3],[2545,2554,4],[2555,2627,3],[2628,2628,4],[2629,2629,3],[2630,2639,4],[2640,2816,3],[2817,2817,2],[2818,2820,3],[2821,2829,2],[2830,2830,3],[2831,2841,2],[2842,2872,3],[2873,2873,2],[2874,2877,3],[2878,2889,2],[2890,2999,3],[3000,3035,4],[3036,3038,3],[3039,3044,4],[3045,3045,3],[3046,3046,4],[3047,3049,3],[3050,3058,4],[3059,3059,3],[3060,3060,4],[3061,3064,3],[3065,3074,4],[3075,3076,3],[3077,3098,4],[3099,3099,3],[3100,3292,4],[3293,3302,3],[3303,3308,4],[3309,3319,3],[3320,3333,4],[3334,3337,3],[3338,3339,4],[3340,3758,3],[3759,3760,4],[3761,3764,3],[3765,3999,4],[4000,4416,3],[4417,4417,2],[4418,4427,3],[4428,4473,2],[4474,4476,1],[4477,4478,2],[4479,4485,1],[4486,4491,2],[4492,4492,1],[4493,4493,2],[4494,4494,3],[4495,4497,2],[4498,4719,3],[4720,4722,2],[4723,4723,3],[4724,4734,2],[4735,4736,1],[4737,4822,3],[4823,4823,2],[4824,4824,3],[4825,4827,2],[4828,4828,3],[4829,4829,1],[4830,5431,3],[5432,5450,2],[5451,5654,3],[5655,5669,2],[5670,5679,3],[5680,5699,2],[5700,5709,3],[5710,5722,2],[5723,5724,1],[5725,5730,2],[5731,5731,1],[5732,5732,2],[5733,5799,1],[5800,6043,3],[6044,6044,2],[6045,6256,3],[6257,6270,4],[6271,6316,3],[6317,6349,4],[6350,6353,3],[6354,6356,4],[6357,6394,3],[6395,6400,4],[6401,6430,3],[6431,6431,2],[6432,6433,3],[6434,6440,2],[6441,6441,1],[6442,6444,3],[6445,6459,4],[6460,6467,3],[6468,6469,2],[6470,6471,3],[6472,6472,2],[6473,6506,3],[6507,6508,2],[6509,6509,3],[6510,6536,2],[6537,6537,1],[6538,6555,2],[6556,6573,3],[6574,6602,2],[6603,6607,3],[6608,6641,2],[6642,6724,1],[6725,6750,2],[6751,6764,1],[6765,6765,2],[6766,6797,1],[6798,6799,2],[6800,6999,3],[7000,8999,4],[9000,9999,3]];
+
+function zoneForPostcode(pc: string): number | null {
+  const p = parseInt(pc, 10);
+  if (Number.isNaN(p)) return null;
+  for (const [lo, hi, zone] of POSTCODE_ZONES) {
+	if (p >= lo && p <= hi) return zone;
+  }
+  return null;
+}
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+type Results = {
+  size: number; min: number; max: number; inv: string;
+  prod: number; annprod: string; panels: number; sqm: number;
+  self: number; co2: string;
+};
+
+const state = {
+  bill: 400,
+  zone: null as number | null,
+  roof: 'medium',
+  results: null as Results | null,
+};
+
+// ── ELEMENTS ──────────────────────────────────────────────────────────────────
+const billRange = root.querySelector<HTMLInputElement>('#gsq9-bill-range')!;
+const billVal = root.querySelector<HTMLElement>('#gsq9-bill-val')!;
+const postcodeInput = root.querySelector<HTMLInputElement>('#gsq9-postcode')!;
+const zoneDisplay = root.querySelector<HTMLElement>('#gsq9-zone-display')!;
+const postcodeError = root.querySelector<HTMLElement>('#gsq9-postcode-error')!;
+const sunHint = root.querySelector<HTMLElement>('#gsq9-sun-hint')!;
+const roofSelect = root.querySelector<HTMLSelectElement>('#gsq9-roof')!;
+const roofHint = root.querySelector<HTMLElement>('#gsq9-roof-hint')!;
+const calculateBtn = root.querySelector<HTMLButtonElement>('#gsq9-btn')!;
+const editBtn = root.querySelector<HTMLButtonElement>('#gsq9-edit-btn')!;
+const inputsPanel = root.querySelector<HTMLElement>('#gsq9-inputs')!;
+const ctaPanel = root.querySelector<HTMLElement>('#gsq9-cta')!;
+const ctaBtn = root.querySelector<HTMLAnchorElement>('#gsq9-cta-btn')!;
+const promptText = root.querySelector<HTMLElement>('#gsq9-prompt-text')!;
+const tabButtons = root.querySelectorAll<HTMLButtonElement>('.gsq9-tab');
+const heroLabelA = root.querySelector<HTMLElement>('#gsq9-hl-a')!;
+const heroLabelB = root.querySelector<HTMLElement>('#gsq9-hl-b')!;
+const heroNumA = root.querySelector<HTMLElement>('#gsq9-hn-a')!;
+const heroNumB = root.querySelector<HTMLElement>('#gsq9-hn-b')!;
+const panels: Record<string, HTMLElement> = {
+  size: root.querySelector<HTMLElement>('#gsq9-sz')!,
+  roof: root.querySelector<HTMLElement>('#gsq9-sr')!,
+  output: root.querySelector<HTMLElement>('#gsq9-so')!,
+};
+
+// ── INPUT HANDLERS ────────────────────────────────────────────────────────────
+function updateBill(v: string) {
+  state.bill = parseInt(v, 10);
+  billVal.textContent = '$' + state.bill;
+}
+
+function checkPostcode(v: string) {
+  const c = v.replace(/\D/g, '');
+  postcodeInput.value = c;
+  if (c.length === 4) {
+	const zone = zoneForPostcode(c);
+	if (zone) {
+	  state.zone = zone;
+	  zoneDisplay.textContent = 'Zone ' + zone;
+	  postcodeError.style.display = 'none';
+	  sunHint.textContent = ZONE_LABEL[zone];
+	  postcodeInput.classList.remove('gsq9-err');
+	} else {
+	  state.zone = null;
+	  zoneDisplay.textContent = '';
+	  postcodeError.style.display = 'block';
+	  sunHint.textContent = 'Enter your postcode to find your peak sun hours.';
+	}
+  } else {
+	state.zone = null;
+	zoneDisplay.textContent = '';
+	postcodeError.style.display = 'none';
+	sunHint.textContent = 'Enter your postcode to find your peak sun hours.';
+  }
+}
+
+function updateRoof() {
+  state.roof = roofSelect.value;
+  roofHint.textContent = ROOF[state.roof].hint;
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────────────
+function switchTab(name: string, btn: HTMLButtonElement) {
+  for (const key of Object.keys(panels)) {
+	panels[key].style.display = key === name ? 'block' : 'none';
+  }
+
+  // Chart.js can't size a canvas whose container was hidden (display:none)
+  // when the chart was created, so force a resize now that it's visible.
+  if (name === 'output' && chart) chart.resize();
+
+  tabButtons.forEach((tab) => tab.classList.remove('gsq9-tab-on'));
+  btn.classList.add('gsq9-tab-on');
+
+  const r = state.results;
+  if (!r) return;
+  const heroes: Record<string, { la: string; lb: string; a: string; b: string }> = {
+	size: { la: 'RECOMMENDED SYSTEM SIZE', lb: 'DAILY PRODUCTION', a: r.size + ' kW', b: r.prod + ' kWh/day' },
+	roof: { la: 'PANELS REQUIRED', lb: 'ROOF SPACE NEEDED', a: r.panels + ' panels', b: '~' + r.sqm + ' m²' },
+	output: { la: 'ANNUAL PRODUCTION', lb: 'SELF-SUFFICIENCY', a: r.annprod + ' kWh', b: '~' + r.self + '%' },
+  };
+  const h = heroes[name];
+  if (!h) return;
+  heroLabelA.textContent = h.la;
+  heroLabelB.textContent = h.lb;
+  heroNumA.textContent = h.a;
+  heroNumB.textContent = h.b;
+  heroNumB.className = 'gsq9-hero-num';
+}
+
+// ── CALCULATE ─────────────────────────────────────────────────────────────────
+function calculate() {
+  const pc = postcodeInput.value;
+  if (!pc || pc.length !== 4 || !state.zone) {
+	postcodeError.style.display = 'block';
+	postcodeInput.classList.add('gsq9-err');
+	postcodeInput.focus();
+	return;
+  }
+  postcodeInput.classList.remove('gsq9-err');
+
+  const sun = ZONE_SUN[state.zone] || 4.8;
+  const cap = ROOF[state.roof].cap;
+
+  // Daily usage from bill
+  const dailyKwh = state.bill / ER / 91;
+
+  // Ideal size capped by roof
+  const rawSize = Math.min(dailyKwh / (sun * 0.78), cap);
+
+  // Snap to standard sizes within cap
+  const allSizes = [3, 4, 5, 6, 6.6, 7, 8, 9, 10, 12, 13];
+  const sizes = allSizes.filter((s) => s <= cap);
+  const recSize = sizes.reduce((prev, curr) =>
+	Math.abs(curr - rawSize) < Math.abs(prev - rawSize) ? curr : prev
+  );
+  const idx = sizes.indexOf(recSize);
+  const minSize = sizes[Math.max(0, idx - 1)];
+  const maxSize = sizes[Math.min(sizes.length - 1, idx + 1)];
+
+  const dailyProd = parseFloat((recSize * sun * 0.78).toFixed(1));
+  const annualProd = Math.round(dailyProd * 365);
+  const panelCount = Math.ceil((recSize * 1000) / 400);
+  const sqm = Math.round(panelCount * 1.7);
+  const selfPct = Math.round((Math.min(dailyProd, dailyKwh) / dailyKwh) * 100);
+  const co2 = ((Math.min(dailyProd, dailyKwh) * 365 * CO2_PER_KWH) / 1000).toFixed(1);
+  const invSize =
+	recSize <= 6.6 ? recSize + 'kW single-phase'
+	: recSize <= 10 ? recSize + 'kW single or three-phase'
+	: recSize + 'kW three-phase';
+
+  // Monthly production factors
+  const isNorth = state.zone === 1 || state.zone === 2;
+  const mf = isNorth
+	? [1.05, 1.08, 1.02, 0.96, 0.88, 0.82, 0.85, 0.90, 0.98, 1.05, 1.08, 1.08]
+	: [1.15, 1.10, 1.05, 0.95, 0.82, 0.72, 0.76, 0.84, 0.96, 1.08, 1.14, 1.18];
+  const monthlyProd = mf.map((f) => parseFloat((dailyProd * f * 30.4).toFixed(0)));
+  const monthlyUsage = mf.map(() => parseFloat((dailyKwh * 30.4).toFixed(0)));
+
+  state.results = {
+	size: recSize, min: minSize, max: maxSize, inv: invSize,
+	prod: dailyProd, annprod: annualProd.toLocaleString('en-AU'),
+	panels: panelCount, sqm,
+	self: selfPct, co2,
+  };
+
+  // ── Hero (size tab default)
+  heroLabelA.textContent = 'RECOMMENDED SYSTEM SIZE';
+  heroLabelB.textContent = 'DAILY PRODUCTION';
+  heroNumA.textContent = recSize + ' kW';
+  heroNumB.textContent = dailyProd + ' kWh/day';
+  heroNumB.className = 'gsq9-hero-num';
+
+  // ── SIZE tab
+  root.querySelector('#gsq9-z-size')!.textContent = recSize + ' kW';
+  root.querySelector('#gsq9-z-min')!.textContent = minSize + ' kW';
+  root.querySelector('#gsq9-z-max')!.textContent = maxSize + ' kW';
+  root.querySelector('#gsq9-z-inv')!.textContent = invSize;
+
+  // ── ROOF tab
+  root.querySelector('#gsq9-r-panels')!.textContent = panelCount + ' panels';
+  root.querySelector('#gsq9-r-sqm')!.textContent = '~' + sqm + ' m²';
+  root.querySelector('#gsq9-r-shade')!.textContent = '~' + sqm + ' m² unshaded';
+
+  // ── OUTPUT tab
+  root.querySelector('#gsq9-o-daily')!.textContent = dailyProd + ' kWh/day';
+  root.querySelector('#gsq9-o-annual')!.textContent = annualProd.toLocaleString('en-AU') + ' kWh/yr';
+  root.querySelector('#gsq9-o-self')!.textContent = '~' + selfPct + '%';
+  root.querySelector('#gsq9-o-co2')!.textContent = co2 + ' tonnes/yr';
+
+  // ── Chart
+  renderChart(monthlyProd, monthlyUsage);
+
+  // ── Prompt text
+  promptText.textContent = 'Click "Get My 3 Quotes Now" to compare quotes from top-voted local installers';
+  promptText.style.color = '#555';
+  promptText.style.fontStyle = 'normal';
+
+  // ── Reset to Size tab
+  panels.size.style.display = 'block';
+  panels.roof.style.display = 'none';
+  panels.output.style.display = 'none';
+  tabButtons.forEach((tab) => tab.classList.remove('gsq9-tab-on'));
+  tabButtons[0].classList.add('gsq9-tab-on');
+
+  // ── CTA
+  ctaBtn.href = QUOTES_URL + '?postcode=' + pc;
+
+  // ── Flip left panel
+  inputsPanel.style.display = 'none';
+  ctaPanel.style.display = 'block';
+}
+
+// ── RESET ─────────────────────────────────────────────────────────────────────
+function reset() {
+  inputsPanel.style.display = 'block';
+  ctaPanel.style.display = 'none';
+  promptText.textContent = 'Fill in your details on the left to see your results';
+  promptText.style.color = '#aaa';
+  promptText.style.fontStyle = 'italic';
+}
+
+// ── CHART ─────────────────────────────────────────────────────────────────────
+let chart: any = null;
+function renderChart(prod: number[], usage: number[]) {
+  const ctx = root.querySelector<HTMLCanvasElement>('#gsq9-chart');
+  if (!ctx) return;
+  if (chart) { chart.destroy(); chart = null; }
+  chart = new Chart(ctx, {
+	type: 'bar',
+	data: {
+	  labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+	  datasets: [
+		{
+		  label: 'Solar production (kWh)',
+		  data: prod,
+		  backgroundColor: '#3E8AB9',
+		  borderRadius: 2,
+		  order: 2,
+		},
+		{
+		  label: 'Your usage (kWh)',
+		  data: usage,
+		  type: 'line',
+		  borderColor: '#f78e19',
+		  backgroundColor: 'transparent',
+		  borderWidth: 2,
+		  pointBackgroundColor: '#f78e19',
+		  pointRadius: 3,
+		  tension: 0.3,
+		  order: 1,
+		},
+	  ],
+	},
+	options: {
+	  responsive: true,
+	  maintainAspectRatio: false,
+	  plugins: {
+		legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12, padding: 10 } },
+		tooltip: { callbacks: { label: (c: any) => c.dataset.label + ': ' + c.raw + ' kWh' } },
+	  },
+	  scales: {
+		x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#888' }, border: { display: false } },
+		y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 10 }, color: '#888' }, border: { display: false } },
+	  },
+	},
+  });
+}
+
+// ── WIRE UP ───────────────────────────────────────────────────────────────────
+billRange.addEventListener('input', () => updateBill(billRange.value));
+postcodeInput.addEventListener('input', () => checkPostcode(postcodeInput.value));
+roofSelect.addEventListener('change', updateRoof);
+calculateBtn.addEventListener('click', calculate);
+editBtn.addEventListener('click', reset);
+tabButtons.forEach((btn) => btn.addEventListener('click', () => switchTab(btn.dataset.tab!, btn)));
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+updateBill(billRange.value);
+updateRoof();
+</script>
+
+<style>
+	.head {
+		background-color: #183868;
+		color: #fff;
+		text-align: center;
+		padding: 4rem 1rem;
+	}
+	.wrap {
+		margin: 0 auto;
+		max-width: 48rem;
+	}
+  .section2 {
+	padding: 4rem 1rem;
+  }
+</style>

@@ -1,0 +1,280 @@
+---
+import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
+
+import systemSizeIcon from '../../assets/buying-solar-101-guide.png';
+import buyingGuideIcon from '../../assets/solar-basics-101-australia.png';
+import costGuideIcon from '../../assets/Beginner-Questions-You-Need-to-Answer-Before-Getting-Quotes.png';
+
+import brwLogo from '../../assets/logos/brw.png';
+import betterHomesLogo from '../../assets/logos/bhg.png';
+import yahooLogo from '../../assets/logos/yahoo.png';
+
+
+import heroBg from '../../assets/hero-bg.png';
+const optimizedBg = await getImage({ src: heroBg, width: 1920, format: 'webp' });
+
+const infoCards = [
+	{
+		title: "What size solar system do I need?",
+		subtitle: "Work out the right system size for your home",
+		href: "/solar-system-size",
+		icon: systemSizeIcon,
+	},
+	{
+		title: "Solar buying guide for Australians",
+		subtitle: "How solar works, costs, rebates & how to choose an installer",
+		href: "/solar-buying-guide",
+		icon: buyingGuideIcon,
+	},
+	{
+		title: "Solar System Cost Guide",
+		subtitle: "See how much a system will cost and ROI times",
+		href: "/solar-cost-guide",
+		icon: costGuideIcon,
+	},
+];
+---
+
+<section class="hero">
+	<!-- Background illustration placeholder -->
+	<div class="hero-bg" style={`background-image: url(${optimizedBg.src})`}>
+	</div>
+
+	<div class="hero-inner">
+		<div class="hero-grid">
+			<!-- Left: heading + cards -->
+			<div>
+				<h1 class="hero-title">
+					Trusted Advice on Going Solar in Australia
+				</h1>
+				<p class="hero-subtitle">
+					Find the right solar system size, understand costs and rebates, and
+					maximise your return on investment.
+				</p>
+
+				<div class="info-card-list">
+					{infoCards.map((card) => (
+						<a href={card.href} class="info-card">
+							<Image src={card.icon} alt="" loading="eager" width={56} height={56} class="info-card-icon" />
+
+							<div class="info-card-body">
+								<p class="info-card-title">{card.title}</p>
+								<p class="info-card-subtitle">{card.subtitle}</p>
+							</div>
+							<svg class="info-card-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+							</svg>
+						</a>
+					))}
+				</div>
+			</div>
+
+			<!-- Right: CTA box -->
+			<div class="hero-cta-box">
+				<h2 class="hero-cta-title">
+					Compare 3 Quotes from Top-voted Installers.
+				</h2>
+				<p class="hero-cta-subtitle">Let us choose for you</p>
+				<button class="hero-cta-button">
+					Get free quotes
+				</button>
+			</div>
+		</div>
+
+		<div class="trusted-by">
+			<span class="trusted-by-label">
+				FEATURED AND TRUSTED BY:
+			</span>
+			<span class="trusted-by-logos">
+				<Image src={brwLogo} alt="BRW" class="trusted-by-logo" loading="eager" />
+				<Image src={betterHomesLogo} alt="Better Homes and Gardens" class="trusted-by-logo" loading="eager" />
+				<Image src={yahooLogo} alt="Yahoo" class="trusted-by-logo" loading="eager" />
+			</span>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+		background-color: #bae6fd;
+	}
+
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		background-size: cover;
+		background-position: bottom;
+	}
+
+	.hero-inner {
+		position: relative;
+		margin: 0 auto;
+		max-width: 80rem;
+		padding: 4rem 1.5rem 2.5rem;
+	}
+
+	.hero-grid {
+		display: grid;
+		gap: 2.5rem;
+		align-items: start;
+	}
+
+	.hero-title {
+		font-size: 2.25rem;
+		font-weight: 800;
+		color: #0f172a;
+		line-height: 1.2;
+	}
+
+	.hero-subtitle {
+		margin-top: 1.25rem;
+		font-size: 1.125rem;
+		color: #1e293b;
+		max-width: 36rem;
+	}
+
+	.info-card-list {
+		margin-top: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		max-width: 36rem;
+	}
+
+	.info-card {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		background-color: #ffffff;
+		border-radius: 0.375rem;
+		box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+		transition: box-shadow 0.15s ease;
+		padding: 1rem;
+	}
+
+	.info-card:hover {
+		box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+	}
+
+	.info-card-icon {
+		width: 3.5rem;
+		height: 3.5rem;
+		object-fit: cover;
+		border-radius: 0.25rem;
+	}
+
+	.info-card-body {
+		flex: 1;
+		border-left: 1px solid #e2e8f0;
+		padding-left: 1rem;
+	}
+
+	.info-card-title {
+		font-weight: 600;
+		color: #0f172a;
+	}
+
+	.info-card-subtitle {
+		margin-top: 0.125rem;
+		font-size: 0.875rem;
+		color: #475569;
+	}
+
+	.info-card-chevron {
+		width: 1.25rem;
+		height: 1.25rem;
+		color: #64748b;
+		flex-shrink: 0;
+	}
+
+	.hero-cta-box {
+		background-color: #ed8614;
+		color: #ffffff;
+		border-radius: 0.5rem;
+		padding: 2rem;
+		box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+	}
+
+	.hero-cta-title {
+		font-size: 1.5rem;
+		font-weight: 700;
+		line-height: 1.3;
+	}
+
+	.hero-cta-subtitle {
+		margin-top: 1rem;
+		color: #fff7ed;
+	}
+
+	.hero-cta-button {
+		margin-top: 1.5rem;
+		background-color: #0f172a;
+		transition: background-color 0.15s ease;
+		color: #ffffff;
+		font-weight: 600;
+		padding: 0.75rem 1.5rem;
+		border-radius: 9999px;
+	}
+
+	.hero-cta-button:hover {
+		background-color: #1e293b;
+	}
+
+	.trusted-by {
+		padding: 1rem 1.5rem;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	.trusted-by-label {
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.025em;
+		color: #1e293b;
+	}
+
+	.trusted-by-logos {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.trusted-by-logo {
+		height: 2rem;
+		width: auto;
+	}
+
+	@media (min-width: 768px) {
+		.hero-title {
+			font-size: 3rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.hero-grid {
+			grid-template-columns: 1.4fr 1fr;
+		}
+
+		.hero-cta-box {
+			margin-top: 1.5rem;
+		}
+
+		.hero-inner {
+			padding-left: 3rem;
+			padding-right: 3rem;
+		}
+
+		.trusted-by {
+			padding-left: 3rem;
+			padding-right: 3rem;
+			justify-content: flex-end;
+		}
+	}
+</style>

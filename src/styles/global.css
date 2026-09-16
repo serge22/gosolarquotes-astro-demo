@@ -1,0 +1,14 @@
+@import 'modern-normalize/modern-normalize.css';
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: none;
+	cursor: pointer;
+}

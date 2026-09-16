@@ -1,0 +1,172 @@
+---
+import { Image } from 'astro:assets';
+
+import govRebateIcon from '../../assets/icons/Government-rebates-icon.png';
+import solarPanelCostIcon from '../../assets/icons/Solar-panel-cost-icon.png';
+import paybackPeriodIcon from '../../assets/icons/payback-period-icon.png';
+import feedInTariffsIcon from '../../assets/icons/solar-feed-in-tariffs-icon.png';
+
+
+const cards = [
+  {
+	title: 'Government Rebates',
+	text: 'Which rebates can I claim & how much I save.',
+	href: '/guides/solar-rebate',
+	icon: govRebateIcon,
+  },
+  {
+	title: 'Solar Panel Cost',
+	text: 'What do solar panels cost in 2025?',
+	href: '/guides/solar-panel-cost',
+	icon: solarPanelCostIcon,
+  },
+  {
+	title: 'Payback Period',
+	text: "What's they typical ROI for solar?",
+	href: '/guides/payback-period',
+	icon: paybackPeriodIcon,
+  },
+  {
+	title: 'Feed-in Tariffs',
+	text: 'This is where the real savings begin',
+	href: '/guides/feed-in-tariffs',
+	icon: feedInTariffsIcon,
+  },
+];
+---
+
+<section class="plan-costs">
+  <div class="plan-costs-inner">
+	<h2 class="plan-costs-heading">
+	  Plan your costs and savings
+	</h2>
+	<p class="plan-costs-intro">
+	  Which rebates can I claim? Understand Australia's rebate and STC incentives and how they
+	  reduce upfront cost.
+	</p>
+
+	<div class="plan-costs-grid">
+	  {cards.map((card) => (
+		<a href={card.href} class="plan-card">
+		  <Image src={card.icon} alt={card.title} class="plan-card-icon" />
+
+		  <span>
+			<span class="plan-card-title">{card.title}</span>
+			<span class="plan-card-text">{card.text}</span>
+		  </span>
+		</a>
+	  ))}
+	</div>
+
+	<p class="plan-costs-footnote">
+	  Savings come from two things: how quickly your system pays itself back and the upfront
+	  discount from Australia's STC scheme.
+	</p>
+	<p class="plan-costs-footnote">
+	  Learn how <a href="/guides/stc-rebates-explained" class="plan-costs-link">STC rebates work</a> and estimate your rebate with our <a href="/tools/stc-rebate-calculator" class="plan-costs-link">STC Rebate Calculator</a>.
+	</p>
+  </div>
+</section>
+
+<style>
+	.plan-costs {
+		background-color: #1f3f6a;
+		color: #ffffff;
+		padding: 4rem 1rem;
+		text-align: center;
+	}
+
+	.plan-costs-inner {
+		margin: 0 auto;
+		max-width: 64rem;
+	}
+
+	.plan-costs-heading {
+		font-size: 1.875rem;
+		font-weight: 800;
+		line-height: 1.2;
+	}
+
+	.plan-costs-intro {
+		margin-top: 1rem;
+		color: #cbd5e1;
+		max-width: 42rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.plan-costs-grid {
+		margin-top: 2.5rem;
+		display: grid;
+		gap: 1rem;
+		text-align: left;
+	}
+
+	.plan-card {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		background-color: #ffffff;
+		border-radius: 0.375rem;
+		padding: 1.5rem;
+		transition: box-shadow 0.15s ease;
+	}
+
+	.plan-card:hover {
+		box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+	}
+
+	.plan-card-icon {
+		width: 4.75rem;
+		height: 4.75rem;
+	}
+
+	.plan-card-title {
+		display: block;
+		font-weight: 700;
+		font-size: 1.125rem;
+		color: #0f172a;
+	}
+
+	.plan-card-text {
+		display: block;
+		margin-top: 0.125rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: #f97316;
+	}
+
+	.plan-costs-footnote {
+		margin-top: 2.5rem;
+		color: #cbd5e1;
+		max-width: 42rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.plan-costs-footnote + .plan-costs-footnote {
+		margin-top: 1rem;
+	}
+
+	.plan-costs-link {
+		color: #38bdf8;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	.plan-costs-link:hover {
+		color: #7dd3fc;
+	}
+
+	@media (min-width: 640px) {
+		.plan-costs-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 768px) {
+		.plan-costs-heading {
+			font-size: 2.25rem;
+		}
+	}
+</style>

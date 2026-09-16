@@ -1,17 +1,192 @@
 ---
+import { Image } from 'astro:assets';
 
+import benPhoto from '../assets/head-shot-ben-about-page.png';
+import solarLeadsThumb from '../assets/solar-leads-thumb.jpg';
+
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/home/Hero.astro';
+import HowItWorks from '../components/home/HowItWorks.astro';
+import PlanCostsSavings from '../components/home/PlanCostsSavings.astro';
+import PowerStorageBatteries from '../components/home/PowerStorageBatteries.astro';
+import FreeSolarCalculators from '../components/home/FreeSolarCalculators.astro';
+import SolarSystemSizeCalculator from '../components/home/SolarSystemSizeCalculator.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="GoSolarQuotes: Compare 3 Solar Quotes From Vetted Installers">
+	<Hero />
+	<HowItWorks />
+	<PlanCostsSavings />
+	<PowerStorageBatteries />
+	<FreeSolarCalculators />
+	<SolarSystemSizeCalculator />
+
+	<section class="about-gosolarquotes">
+		<div class="about-gosolarquotes-inner">
+			<div class="about-gosolarquotes-text">
+				<h2 class="about-gosolarquotes-heading">About GoSolarQuotes</h2>
+				<p>
+					GoSolarQuotes was founded in 2017 by Ben McInerney to give Australian homeowners clear,
+					independent advice on solar — without the sales pressure.
+					Since then, we've helped 56,423 Australians compare prices, understand rebates, and get quotes from vetted local installers.
+				</p>
+				<p>
+					Every installer in our network is checked for a licence, insurance, and customer feedback
+					 before they're approved. Every guide on this site is researched, fact-checked, and updated when conditions change.
+				</p>
+				<p>
+					We are not a sales company. We don't take commissions from installers.
+					Our only job is to give you accurate information so you can make the right decision for your home.
+				</p>
+			</div>
+			<div class="about-gosolarquotes-profile">
+				<Image src={benPhoto} alt="Ben McInerney" class="about-gosolarquotes-photo" />
+				<div class="about-gosolarquotes-name">Ben McInerney</div>
+				<div class="about-gosolarquotes-role">Founder, Director & Solar Geek</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="become-installer">
+		<div class="become-installer-card">
+			<Image src={solarLeadsThumb} alt="Solar installers working on a rooftop" class="become-installer-image" />
+			<div class="become-installer-content">
+				<h2 class="become-installer-heading">Become a trusted installer in your city.</h2>
+				<p class="become-installer-subheading">Lead generation for solar companies</p>
+				<a href="/join" class="become-installer-cta">Join Now &gt;</a>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.about-gosolarquotes {
+		padding: 4rem 1rem;
+		border-top: 1px solid #e5e7eb;
+	}
+
+	.about-gosolarquotes-inner {
+		margin: 0 auto;
+		max-width: 64rem;
+		display: grid;
+		gap: 2.5rem;
+		align-items: center;
+	}
+
+	.about-gosolarquotes-heading {
+		font-size: 1.5rem;
+		font-weight: 800;
+		line-height: 1.2;
+		color: #111827;
+		margin-bottom: 1.25rem;
+	}
+
+	.about-gosolarquotes-text p {
+		color: #374151;
+		line-height: 1.6;
+	}
+
+	.about-gosolarquotes-text p + p {
+		margin-top: 1rem;
+	}
+
+	.about-gosolarquotes-profile {
+		justify-self: center;
+		text-align: center;
+	}
+
+	.about-gosolarquotes-photo {
+		width: 9rem;
+		height: 9rem;
+	}
+
+	.about-gosolarquotes-name {
+		margin-top: 1rem;
+		font-weight: 700;
+		color: #111827;
+	}
+
+	.about-gosolarquotes-role {
+		color: #374151;
+	}
+
+	@media (min-width: 768px) {
+		.about-gosolarquotes-inner {
+			grid-template-columns: 2fr 1fr;
+			gap: 4rem;
+		}
+
+		.about-gosolarquotes-profile {
+			justify-self: end;
+		}
+	}
+
+	.become-installer {
+		background-color: #f4f4f4;
+		padding: 3rem 1rem;
+	}
+
+	.become-installer-card {
+		margin: 0 auto;
+		max-width: 64rem;
+		background-color: #ffffff;
+		padding: 1.5rem;
+	}
+
+	.become-installer-image {
+		width: 100%;
+		height: 14rem;
+		object-fit: cover;
+		display: block;
+	}
+
+	.become-installer-content {
+		background-color: #1f3f6a;
+		color: #ffffff;
+		padding: 2rem 1.5rem;
+	}
+
+	.become-installer-heading {
+		font-size: 1.75rem;
+		font-weight: 800;
+		line-height: 1.25;
+	}
+
+	.become-installer-subheading {
+		margin-top: 1rem;
+		font-size: 1rem;
+		color: #e2e8f0;
+	}
+
+	.become-installer-cta {
+		margin-top: 1.5rem;
+		display: inline-block;
+		background-color: #ea8622;
+		color: #ffffff;
+		font-weight: 600;
+		padding: 0.75rem 1.5rem;
+		border-radius: 9999px;
+		text-decoration: none;
+	}
+
+	.become-installer-cta:hover {
+		background-color: #d6791b;
+	}
+
+	@media (min-width: 768px) {
+		.become-installer-card {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.become-installer-image {
+			height: 100%;
+		}
+
+		.become-installer-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+	}
+</style>
