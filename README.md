@@ -1,43 +1,65 @@
-# Astro Starter Kit: Minimal
+# GoSolarQuotes — Astro vs. WordPress Demo
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+This is a proof-of-concept rebuild of the **[GoSolarQuotes](https://www.gosolarquotes.com.au/)** homepage in [Astro](https://astro.build). Only the home page has been recreated — the goal is to give the client a side-by-side feel for how the same page performs and behaves when built with Astro instead of WordPress, not to reproduce the full site.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Why this exists
 
-## 🚀 Project Structure
+WordPress renders pages on request (or via a caching layer bolted on top) and ships a fair amount of framework/plugin overhead to the browser. Astro renders this page to static HTML at build time, so there's:
 
-Inside of your Astro project, you'll see the following folders and files:
+- No PHP/MySQL request-time rendering
+- No plugin bloat — only the markup and CSS this page actually needs ships to the browser
+- Fast, predictable load times out of the box, with the option to add interactivity only where it's needed
+
+This repo demonstrates that with a real page from the client's own site, rather than a generic template.
+
+## Project structure
 
 ```text
 /
-├── public/
+├── public/                  # Static files served as-is
 ├── src/
+│   ├── assets/               # Images, optimized by Astro at build time
+│   ├── components/
+│   │   ├── Header.astro
+│   │   ├── Footer.astro
+│   │   └── home/              # Sections that make up the home page
+│   │       ├── Hero.astro
+│   │       ├── HowItWorks.astro
+│   │       ├── PlanCostsSavings.astro
+│   │       ├── PowerStorageBatteries.astro
+│   │       ├── FreeSolarCalculators.astro
+│   │       └── SolarSystemSizeCalculator.astro
+│   ├── layouts/
+│   │   └── Layout.astro       # Shared page shell (head, header, footer)
+│   ├── styles/
+│   │   └── global.css
 │   └── pages/
-│       └── index.astro
+│       └── index.astro        # The home page — the only route in this demo
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+This project uses [pnpm](https://pnpm.io). All commands are run from the root of the project:
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command                | Action                                           |
+| :---------------------- | :----------------------------------------------- |
+| `pnpm install`           | Install dependencies                             |
+| `pnpm dev`               | Start the local dev server at `localhost:4321`   |
+| `pnpm build`             | Build the production site to `./dist/`           |
+| `pnpm preview`           | Preview the production build locally             |
+| `pnpm astro ...`         | Run Astro CLI commands (e.g. `astro check`)       |
 
-## 🧞 Commands
+When working with an AI coding agent in this repo, start the dev server in the background: `astro dev --background` (manage it with `astro dev stop`, `astro dev status`, `astro dev logs`) — see `AGENTS.md`.
 
-All commands are run from the root of the project, from a terminal:
+## Scope
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+This is a demo, not a migration in progress:
 
-## 👀 Want to learn more?
+- Only the home page is built — no blog, guides, or inner pages
+- Content and copy are taken directly from the live WordPress site for an accurate comparison
+- Not intended for production deployment as-is
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Learn more
+
+- [Astro documentation](https://docs.astro.build)
